@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3ee13d9e-2c41-4d9c-9e55-b1a05edd4c55" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4267">
+              <caret line="299" column="64" selection-start-line="299" selection-start-column="64" selection-end-line="299" selection-end-column="64" />
+              <folding>
+                <element signature="n#passwordReset_post#0;n#Api#0;n#!!top" />
+                <element signature="n#checkToken#0;n#Api#0;n#!!top" />
+                <element signature="n#assignEmployee_post#0;n#Api#0;n#!!top" />
+                <element signature="n#simulateUser_post#0;n#Api#0;n#!!top" />
+                <element signature="n#addEmployee_post#0;n#Api#0;n#!!top" />
+                <element signature="n#plannings_get#0;n#Api#0;n#!!top" />
+                <element signature="n#group_by#0;n#Api#0;n#!!top" />
+                <element signature="n#addProject_post#0;n#Api#0;n#!!top" />
+                <element signature="n#cancelBooking_post#0;n#Api#0;n#!!top" />
+                <element signature="n#editProject_post#0;n#Api#0;n#!!top" />
+                <element signature="n#changeBooking_post#0;n#Api#0;n#!!top" />
+                <element signature="n#weekDates_get#0;n#Api#0;n#!!top" />
+                <element signature="n#renderDates_post#0;n#Api#0;n#!!top" />
+                <element signature="n#getBooking_post#0;n#Api#0;n#!!top" />
+                <element signature="n#checkEmail_post#0;n#Api#0;n#!!top" />
+                <element signature="n#passwordForget_post#0;n#Api#0;n#!!top" />
+                <element signature="n#planningnextprevious_get#0;n#Api#0;n#!!top" />
+                <element signature="n#rates_post#0;n#Api#0;n#!!top" />
+                <element signature="n#rates_get#0;n#Api#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Solfilm.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+              <folding>
+                <element signature="n#__construct#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#customer_contacts_get#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#employees_get#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#savedEmployees_get#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#salesman_get#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#addCustomer_post#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#plannings_get#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#models_get#0;n#Solfilm#0;n#!!top" />
+                <element signature="n#rates_get#0;n#Solfilm#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="69" column="35" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>USER</find>
+      <find>customers</find>
+      <find>simulateUser</find>
+      <find>add</find>
+      <find>simul</find>
+      <find>addPro</find>
+      <find>cancelBo</find>
+      <find>employees</find>
+      <find>employees_ge</find>
+      <find>planning</find>
+      <find>addProject</find>
+      <find>assignEmployee</find>
+      <find>addProjec</find>
+      <find>getBooking_post</find>
+      <find>addUs</find>
+      <find>rates</find>
+      <find>windows</find>
+      <find>forgetPassword</find>
+      <find>passwordForget</find>
+      <find>checkEmail</find>
+      <find>quali</find>
+      <find>parker</find>
+      <find>addUser</find>
+      <find>MAIL_FROM_ADDRESS</find>
+      <find>customer</find>
+      <find>employees_g</find>
+      <find>reset</find>
+      <find>getOrders</find>
+      <find>plannings</find>
+      <find>employees_get</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>'</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/application/config/database.php" />
+        <option value="$PROJECT_DIR$/application/config/jwt.php" />
+        <option value="$PROJECT_DIR$/application/config/config.php" />
+        <option value="$PROJECT_DIR$/application/helpers/authorization_helper.php" />
+        <option value="$PROJECT_DIR$/application/helpers/jwt_helper.php" />
+        <option value="$PROJECT_DIR$/application/config/autoload.php" />
+        <option value="$PROJECT_DIR$/.env.production" />
+        <option value="$PROJECT_DIR$/application/views/order.php" />
+        <option value="$PROJECT_DIR$/application/libraries/Smtp_email.php" />
+        <option value="$PROJECT_DIR$/.env.development" />
+        <option value="$PROJECT_DIR$/application/views/password.php" />
+        <option value="$PROJECT_DIR$/application/views/email_template.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Api.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Solfilm.php" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="627" />
+    <option name="height" value="698" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../auction" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\b2b\assets\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\b2b\application\controllers" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3ee13d9e-2c41-4d9c-9e55-b1a05edd4c55" name="Default Changelist" comment="" />
+      <created>1542690128487</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542690128487</updated>
+      <workItem from="1542690130122" duration="6132000" />
+      <workItem from="1542704441667" duration="907000" />
+      <workItem from="1543474690788" duration="597000" />
+      <workItem from="1543813697485" duration="112000" />
+      <workItem from="1543813891340" duration="88000" />
+      <workItem from="1543814083230" duration="1819000" />
+      <workItem from="1543819753874" duration="2518000" />
+      <workItem from="1544589819065" duration="10054000" />
+      <workItem from="1544676282471" duration="18110000" />
+      <workItem from="1544767770598" duration="9586000" />
+      <workItem from="1545038602081" duration="8188000" />
+      <workItem from="1545106861883" duration="8189000" />
+      <workItem from="1545286459876" duration="3750000" />
+      <workItem from="1545368140752" duration="20663000" />
+      <workItem from="1545712412292" duration="26534000" />
+      <workItem from="1545800671154" duration="14009000" />
+      <workItem from="1545885625673" duration="718000" />
+      <workItem from="1545909278446" duration="4176000" />
+      <workItem from="1545971291767" duration="4513000" />
+      <workItem from="1546002018026" duration="5102000" />
+      <workItem from="1546316658550" duration="11259000" />
+      <workItem from="1546403246486" duration="120000" />
+      <workItem from="1546403626458" duration="5498000" />
+      <workItem from="1546414660620" duration="601000" />
+      <workItem from="1546838982769" duration="7744000" />
+      <workItem from="1547009667315" duration="13070000" />
+      <workItem from="1547094639205" duration="13889000" />
+      <workItem from="1547180884232" duration="7644000" />
+      <workItem from="1547440743362" duration="10066000" />
+      <workItem from="1547525727919" duration="13793000" />
+      <workItem from="1547612475314" duration="4085000" />
+      <workItem from="1547700783070" duration="1803000" />
+      <workItem from="1547814407122" duration="595000" />
+      <workItem from="1548045731380" duration="3962000" />
+      <workItem from="1548241396318" duration="636000" />
+      <workItem from="1548305077692" duration="26000" />
+      <workItem from="1548410732168" duration="878000" />
+      <workItem from="1548657827040" duration="4146000" />
+      <workItem from="1548738535579" duration="821000" />
+      <workItem from="1548752628111" duration="5859000" />
+      <workItem from="1548821800753" duration="11867000" />
+      <workItem from="1548931547853" duration="1587000" />
+      <workItem from="1549023747849" duration="670000" />
+      <workItem from="1549261979597" duration="4306000" />
+      <workItem from="1549343069938" duration="201000" />
+      <workItem from="1549348108561" duration="10136000" />
+      <workItem from="1549427014111" duration="1320000" />
+      <workItem from="1549430842669" duration="558000" />
+      <workItem from="1549433909532" duration="9708000" />
+      <workItem from="1549513774219" duration="252000" />
+      <workItem from="1549525978882" duration="2095000" />
+      <workItem from="1549624646157" duration="3374000" />
+      <workItem from="1549863136878" duration="4884000" />
+      <workItem from="1550643020427" duration="20000" />
+      <workItem from="1550753817224" duration="898000" />
+      <workItem from="1550814651476" duration="5486000" />
+      <workItem from="1550837627923" duration="1628000" />
+      <workItem from="1551070566444" duration="4582000" />
+      <workItem from="1551156161034" duration="6333000" />
+      <workItem from="1551244350422" duration="4894000" />
+      <workItem from="1551345460295" duration="203000" />
+      <workItem from="1552548299759" duration="1368000" />
+      <workItem from="1552555994150" duration="1177000" />
+      <workItem from="1552560613109" duration="5090000" />
+      <workItem from="1553145035602" duration="6020000" />
+      <workItem from="1553575452147" duration="373000" />
+      <workItem from="1553747723711" duration="7236000" />
+      <workItem from="1553757557729" duration="3235000" />
+      <workItem from="1553769489113" duration="673000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="352434000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16260745" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32891247" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5542">
+          <caret line="326" column="61" selection-start-line="326" selection-start-column="61" selection-end-line="326" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/jwt_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3247">
+          <caret line="191" column="1" selection-start-line="191" selection-start-column="1" selection-end-line="191" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/authorization_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/jwt.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="79" column="12" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Smtp_email.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="59" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="59" />
+          <folding>
+            <element signature="n#send_attach_mail#0;n#Smtp_email#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.production">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/Format.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/libraries/REST_Controller.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="86" selection-start-line="60" selection-start-column="80" selection-end-line="60" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="61" column="71" selection-start-line="61" selection-start-column="71" selection-end-line="61" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.development">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="17" selection-start-line="25" selection-end-line="25" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/password.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="71" column="98" lean-forward="true" selection-start-line="71" selection-start-column="98" selection-end-line="71" selection-end-column="98" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#3;n#tbody#0;n#table#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/email_template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="79" column="48" selection-start-line="79" selection-start-column="48" selection-end-line="79" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4267">
+          <caret line="299" column="64" selection-start-line="299" selection-start-column="64" selection-end-line="299" selection-end-column="64" />
+          <folding>
+            <element signature="n#passwordReset_post#0;n#Api#0;n#!!top" />
+            <element signature="n#checkToken#0;n#Api#0;n#!!top" />
+            <element signature="n#assignEmployee_post#0;n#Api#0;n#!!top" />
+            <element signature="n#simulateUser_post#0;n#Api#0;n#!!top" />
+            <element signature="n#addEmployee_post#0;n#Api#0;n#!!top" />
+            <element signature="n#plannings_get#0;n#Api#0;n#!!top" />
+            <element signature="n#group_by#0;n#Api#0;n#!!top" />
+            <element signature="n#addProject_post#0;n#Api#0;n#!!top" />
+            <element signature="n#cancelBooking_post#0;n#Api#0;n#!!top" />
+            <element signature="n#editProject_post#0;n#Api#0;n#!!top" />
+            <element signature="n#changeBooking_post#0;n#Api#0;n#!!top" />
+            <element signature="n#weekDates_get#0;n#Api#0;n#!!top" />
+            <element signature="n#renderDates_post#0;n#Api#0;n#!!top" />
+            <element signature="n#getBooking_post#0;n#Api#0;n#!!top" />
+            <element signature="n#checkEmail_post#0;n#Api#0;n#!!top" />
+            <element signature="n#passwordForget_post#0;n#Api#0;n#!!top" />
+            <element signature="n#planningnextprevious_get#0;n#Api#0;n#!!top" />
+            <element signature="n#rates_post#0;n#Api#0;n#!!top" />
+            <element signature="n#rates_get#0;n#Api#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="69" column="35" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Solfilm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
+          <folding>
+            <element signature="n#__construct#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#customer_contacts_get#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#employees_get#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#savedEmployees_get#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#salesman_get#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#addCustomer_post#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#plannings_get#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#models_get#0;n#Solfilm#0;n#!!top" />
+            <element signature="n#rates_get#0;n#Solfilm#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
