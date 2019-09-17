@@ -1,0 +1,95 @@
+<style>
+  .order-card-header {
+    background-color: #f7f7f7;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .box-title {
+    font-size: 16px;
+    font-family: 'Open Sans';
+    font-weight: bold;
+  }
+
+  .input-field {
+    font-family: "Open Sans";
+    font-size: 14px;
+  }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="row mt-4 mat-dialog-content">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <mat-card class="p-0">
+                            <mat-card-header class="order-card-header">
+                                <mat-card-title class="box-title">
+                                    <!-- Window --> Ruder og toning
+                                </mat-card-title>
+                                <mat-card-subtitle>
+                                    <!-- Choose the window combination you wish to add to the order. -->
+                                  Vælg kombinationen af rudetypen og toningen som du ønsker at tilføje til bookingen.
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content class="pl-4">
+                                <mat-hint *ngIf="!data.is_tinting_selected" style="font-family: 'Open Sans' !important; color: #790000 !important">
+                                    <!-- Please select it -->Vælg venligst en af mulighederne.
+                                </mat-hint>
+                                <mat-radio-group aria-label="Select a window"
+                                  (change)="onChangeCustomWindow($event.value)">
+                                    <mat-radio-button
+                                        class="w-100 mt-1 mb-1"
+                                        *ngFor="let window of data.window_data; let i=index"
+                                        [value]="window">
+                                            {{ window.name }}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+                <div class="row mt-4 mb-2">
+                    <div class="col-12">
+                        <mat-card class="p-0" *ngIf="data.is_shadow_show">
+                          <mat-card-header class="order-card-header">
+                                <mat-card-title class="box-title">
+                                    <!-- Shade -->Toning
+                                </mat-card-title>
+                                <mat-card-subtitle>
+                                    <!-- Choose the shade. -->Vælg toning
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content class="pl-4">
+                                <mat-hint *ngIf="!data.is_shadow_selected" style="font-family: 'Open Sans' !important; color: #790000 !important">
+                                  <!-- Please select it -->Vælg venligst en af mulighederne.
+                                </mat-hint>
+                                <mat-radio-group aria-label="Select a shade"
+                                  (change)="onChangeCustomWindowShade($event.value)">
+                                    <div class="row mt-3 mb-3">
+                                        <mat-radio-button
+                                        class="col ml-2"
+                                        *ngFor="let shade of data.shade_data; let i=index"
+                                        [value]="shade">
+                                                {{ shade.name }}
+                                        </mat-radio-button>
+                                    </div>
+                                </mat-radio-group>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mat-dialog-actions">
+            <div class="col-12">
+                <div>
+                    <button mat-button class="float-right p-2" (click)="yesButtonHandler()"><!-- Yes -->TILFØJ</button>
+                    <button mat-button class="float-right p-2" (click)="cancelButtonHandler()"><!-- Cancel -->ANNULLÉR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

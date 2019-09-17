@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 ">
+                <h4 class="text-info float-left py-1"><!-- Confirm -->Bekræft brugerændring</h4>
+            </div>
+        </div>
+        <div class="row text-center mat-dialog-content">
+            <div class="col-12 float-left" style="text-align: left">
+                <p style="font-size: 15px;">{{ data.caption }}</p>
+            </div>
+        </div>
+        <div class="row mat-dialog-actions">
+            <div class="col-12">
+                <div>
+                    <button mat-button class="float-right p-2" (click)="yesButtonHandler()"><!-- Yes -->JA</button>
+                    <button mat-button class="float-right p-2" (click)="cancelButtonHandler()"><!-- Cancel -->NEJ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

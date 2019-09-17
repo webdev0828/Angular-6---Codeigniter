@@ -1,0 +1,71 @@
+<style>
+  .order-title {
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .leading-text {
+    font-family: "Open Sans";
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  .placeholder {
+    font-family: "Open Sans";
+    font-size: 12px;
+  }
+
+  .step-cancel-button, .step-next-button, .step-prev-button {
+    margin: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 12px 0;
+    line-height: 20px;
+    font-family: 'Open Sans';
+  }
+
+  .step-cancel-button {
+    background-color:#f8f9fa !important;
+  }
+
+  .step-next-button {
+    background-color: rgba(40, 167, 69, .5) !important;
+  }
+
+</style>
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12 pr-1 pl-1">
+      <h5 class="order-title"> Tilføj en sælger </h5>
+      <mat-divider></mat-divider>
+      <div class="pl-3">
+        <p class="leading-text mb-3 mt-3">
+          <!-- New Salesman created cannot be changed or deleted afterwards. -->
+          Vær opmærksom på, at en sælger ikke kan ændres eller slettes efter oprettelse.
+        </p>
+      </div>
+    </div>
+    <form [formGroup]="addSalesmanFormGroup">
+      <div style="margin-left:20px;margin-right:20px">
+        <mat-form-field class="input-field w-100" required>
+          <input matInput type="text" formControlName="salesmanName" required>
+          <mat-placeholder class="placeholder">Navn</mat-placeholder>
+          <mat-error class="text-error"><!-- Please enter name--> Indtast sælgerens navn</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field w-100">
+          <input matInput type="email" formControlName="salesmanEmail" required>
+          <mat-placeholder class="placeholder">E-mail</mat-placeholder>
+          <mat-error class="text-error"><!-- Please enter valid email--> Indtast en gyldig email adresse for sælgeren.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-field w-100">
+          <input matInput type="text" formControlName="salesmanPhone" required>
+          <mat-placeholder class="placeholder">Telefonnummer</mat-placeholder>
+          <mat-error class="text-error"><!-- Please enter phone --> Indtast sælgerens telefonnummer.</mat-error>
+        </mat-form-field>
+        <button mat-button class="step-next-button float-right ml-1" (click)="yesButtonHandler()" [disabled]="!addSalesmanFormGroup.valid">GEM</button>
+        <button mat-button class="step-cancel-button float-right mr-1" (click)="cancelButtonHandler()">ANNULLÉR</button>
+      </div>
+    </form>
+  </div>

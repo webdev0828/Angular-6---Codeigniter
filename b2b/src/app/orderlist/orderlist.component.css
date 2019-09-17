@@ -1,0 +1,96 @@
+td {
+  padding: 12px 0;
+  line-height: 20px;
+  font-family: 'Open Sans';
+  font-size: 12px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.order-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  font-family: 'Open Sans';
+  font-size: 30px;
+}
+
+.order-table-container {
+  width: 100%;
+}
+
+.orderTable {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.pendingChip {
+  background-color: #ffee58;
+  font-size: 12px !important;
+  font-family: 'Open Sans' !important;
+}
+
+.completedChip {
+  background-color: rgba(40, 167, 69, 0.5);
+  font-size: 12px !important;
+  font-family: 'Open Sans' !important;
+}
+
+.cancelledChip {
+  background-color: rgba(138, 236, 204, 0.5);
+  font-size: 12px !important;
+  font-family: 'Open Sans' !important;
+}
+
+.closedChip {
+  background-color: #ef5350;
+  font-size: 12px !important;
+  font-family: 'Open Sans' !important;
+}
+
+.small-input {
+  width: 100%;
+}
+.change_form {
+  display: none;
+}
+
+.orderTable {
+  cursor: pointer;
+}
+
+.selected-table-cell {
+  background-color: #e8e0e1;
+  cursor: pointer;
+}
+
+.custom-mat-header {
+  background: #3f3f3f;
+  font-family: 'Open Sans' !important;
+  color: #c0c0c0;
+}
+
+.custom-mat-content {
+  color: #3f3f3f;
+  font-family: 'Open Sans' !important;
+  background-color: silver;
+}
+
+.status_btn {
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.login_anchor {
+  font-size: 12px;
+  font-family: 'Open Sans';
+}
+
+.login_anchor:hover {
+  text-decoration: none;
+}

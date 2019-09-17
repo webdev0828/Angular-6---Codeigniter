@@ -1,0 +1,35 @@
+<app-header active="employees"></app-header>
+<div>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-circus"></ngx-spinner>
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col-12">
+        <h5 class="order-title"><!-- Employees -->Medarbejdere</h5>
+        <mat-divider></mat-divider>
+        <div class="pl-3">
+          <p class="leading-text">
+            <!-- Select the employees that can be called out to any auto dealer.
+                 <br/><br/> When ticked, the employee will appear on the list of possible primary installers for auto dealers.</p> -->
+                  Vælg de medarbejdere der arbejder som installatører.
+                  <br/><br/>Når medarbejderne er valgt, vil de kunne tildeles en autoforhandler som primær installatører.
+          <div class="form-check checkboxContainer" *ngFor="let e of employees">
+            <mat-checkbox class="employeeCheckbox" *ngIf="e.already == 'yes'"
+                          [checked]="true"
+                          [value]="e.id + '_' + e.email + '_' + e.firstname + '_' + e.lastname"
+                          (change)="removeEmployee($event.source.value)"
+                          [id]="formCheck-1">
+              {{e.firstname}} {{e.lastname}}
+            </mat-checkbox>
+            <mat-checkbox class="employeeCheckbox" *ngIf="e.already == 'no'"
+                          [value]="e.id + '_' + e.email + '_' + e.firstname + '_' + e.lastname"
+                          (change)="addEmployee($event.source.value)"
+                          [id]="formCheck-1">
+              {{e.firstname}} {{e.lastname}}
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="space"></div>

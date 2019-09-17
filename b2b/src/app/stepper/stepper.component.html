@@ -1,0 +1,924 @@
+<app-header active="order"></app-header>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-circus">
+  <p style="font-size: 20px; color: white"></p>
+</ngx-spinner>
+<div class="container" *ngIf="addForm">
+
+  <br/>
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{errorText}}
+  </div>
+
+  <div class="alert alert-success" *ngIf="successMessage">
+    {{successText}}
+  </div>
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <ng-template matStepperIcon="edit" let-index="index">
+      {{index + 1}}
+    </ng-template>
+    <mat-step *ngIf="is_regular_order_show" [stepControl]="regularOrderFormGroup">
+        <div class="row pt-5 order-detail-container">
+        <div class="col-md-6 col-lg-12">
+          <form [formGroup]="regularOrderFormGroup">
+            <ng-template matStepLabel><!-- TASK -->BESKRIV OPGAVEN</ng-template>
+            <h5 class="order-title"><!-- Car Model -->Bilmodel</h5>
+            <mat-divider></mat-divider>
+            <div class="pl-3">
+              <p class="leading-text"><!-- Choose make, model and year and other details for auto window
+                tinting and/or paint protection. If
+                you don't find your model among the options, you can manually
+                add the details. -->
+                Vælg bilmærke, model og andre detaljer for auto solfilm eller lakbeskyttelse.
+                Hvis du ikke kan finde din bilmodel, kan du manuelt tilføje oplysningerne.
+              </p>
+              <div class="row">
+                <div class="col-3">
+                  <mat-form-field class="input-field w-100">
+                    <mat-select id="make1" (selectionChange)="onChangeMake($event.value)" formControlName="makeSelect"
+                                placeholder="Bilmærke" [(ngModel)]="car_make_select">
+                      <mat-optgroup label="Bilmærke" disabled="false">
+                        <mat-option *ngFor="let make of makeList" [value]="make">
+                          {{make}}
+                        </mat-option>
+                      </mat-optgroup>
+                    </mat-select>
+                    <mat-error class="text-error"><!-- Please Choose a Car Make -->Vælg venligst et bilmærke.</mat-error>
+                    <mat-hint class="text-error" *ngIf="!isCarMakeSelected" class="text-danger"><!-- Please Choose a Car Make -->Vælg bilmærke
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-3">
+                  <mat-form-field class="input-field w-100">
+                    <mat-select id="model1" (selectionChange)="onChangeModel($event.value)" placeholder="Bilmodel"
+                                formControlName="modelSelect" [(ngModel)]="car_model_select">
+                      <mat-optgroup label="Bilmodel" disabled="false">
+                        <mat-option *ngFor="let model of modelList" [value]="model.model">
+                          {{model.model}}
+                        </mat-option>
+                      </mat-optgroup>
+                    </mat-select>
+                    <mat-error class="text-error"><!-- Please Choose a Car Model -->Vælg venligst en bilmodel</mat-error>
+                    <mat-hint class="text-error" *ngIf="!isCarModelSelected" class="text-danger"><!-- Please Choose a Car
+                      Model -->Vælg bilmodel
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+              <p class="car-model-bottom-caption"><!-- If you did not find your make, model or year you were looking
+                for, please&nbsp;<a class="car-model-bottom-caption-link"
+                                    style="outline: 0;color: #8a1702; text-decoration: underline; cursor: pointer;"
+                                    (click)="gotoPage('ordercustom')">specify them manually.</a> -->
+                Hvis du ikke fandt din bilmodel i listen, kan du
+                &nbsp;<a class="car-model-bottom-caption-link"
+                         style="outline: 0;color: #8a1702; text-decoration: underline; cursor: pointer;"
+                         (click)="gotoPage('ordercustom')">manuelt tilføje oplysningerne.</a>
+
+              </p>
+            </div>
+            <div class="pt-5" *ngIf="is_product_show && salesmen">
+              <h5 class="order-title"><!-- Product -->Produkt</h5>
+              <mat-divider></mat-divider>
+              <mat-divider></mat-divider>
+              <div class="pl-3">
+                <p class="leading-text"><!-- Choose the Product. -->Vælg et produkt</p>
+                <div>
+                  <mat-hint class="text-error" *ngIf="show_paint_or_window_check_hint" class="text-danger">
+                    <!-- Select at least one Product type -->
+                    Vælg mindst ét produkt.
+                  </mat-hint>
+                </div>
+                <div class="row">
+                  <div class="col-auto">
+                    <mat-checkbox class="window-checkbox" id="formCheck-1" name="isChecked" value="window"
+                                  data-error="Vælg autosolfilm" (change)="checkValue($event)"
+                                  formControlName="window_tinting_check">
+                      Solfilm <!-- Window tinting -->
+                    </mat-checkbox>
+                  </div>
+                  <div class="col-auto">
+                    <mat-checkbox class="paint-checkbox" id="formCheck-2" name="isChecked1" value="paint"
+                                  data-error="Vælg lakbeskyttelsesfolie" (change)="checkValue($event)"
+                                  formControlName="paint_protection_check">
+                      Lakbeskyttelse <!-- Paint protection -->
+                    </mat-checkbox>
+                  </div>
+                </div>
+                <mat-card class="window-card p-0" *ngIf="is_window_selected">
+                  <mat-card-header class="order-card-header">
+                    <mat-card-title class="box-title"><!-- Window tinting -->Autosolfilm</mat-card-title>
+                    <mat-card-subtitle><!-- Tinting includes all windows behind B-frame. -->Toning inkluderer alle ruder bag B-stolpe.</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content class="window-tinting-card-body pb-2">
+                    <div class="help-block with-errors" id="shadeError"></div>
+                    <div class="row pl-3 pr-3">
+                      <div class="col-6">
+                        <div class="row">
+                          <div class="col-12">
+                            <div>
+                              <mat-hint class="text-error" *ngIf="!is_shade_selected" class="text-danger">
+                                <!-- Please Select Shade -->Vælg toning
+                              </mat-hint>
+                            </div>
+                          </div>
+                        </div>
+                        <mat-radio-group aria-label="Select an option" (change)="onchangeShades($event.value)"
+                                         formControlName="shadeRadio">
+                          <div class="row">
+                            <div class="col-12">
+                              <p><!-- Choose the tinting percentage for your window--> Vælg toning i procent.<br>
+                              </p>
+                              <mat-radio-button class="shade-radiobutton" re
+                                                *ngFor="let shade of shadeMaterialsFromMobilPlan; let i = index"
+                                                value="{{shade.product_no}}"
+                                                name="shade">
+                                {{shade.name}}
+                              </mat-radio-button>
+                            </div>
+                          </div>
+                        </mat-radio-group>
+                      </div>
+                      <div class="col-6">
+                        <p><!-- If you would like the window tint to be fitted to the
+                          edge of window use one of the options
+                          below (normal tolerance is 1-2 mm from edge). Extra fee
+                          applies if selected. -->
+                          Du kan benytte nedenstående muligheder til, at vælge om solfilmen skal lægges til kanten af ruden mod et mindre gebyr.
+                          Normal tolerance er 1-2 mm fra kanten.
+                          <br>
+                        </p>
+                        <div>
+                          <mat-hint class="text-error" *ngIf="!is_edge_selected" class="text-danger">
+                            Vælg tilpasning af solfilmen
+                            <!-- Please Select Fitting -->
+                          </mat-hint>
+                        </div>
+                        <mat-radio-group aria-label="Select an option" (change)="onchangeFitting($event.value)"
+                                         formControlName="edgeRadio">
+                          <mat-radio-button class="edge-radiobutton"
+                                            *ngFor="let fitting of fittingMaterialsFromMobilPlan; let i = index"
+                                            value="{{fitting.product_no}}" name="fitting">
+                            {{fitting.name}}
+                          </mat-radio-button>
+                        </mat-radio-group>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                <mat-card class="paint-card p-0" *ngIf="is_paint_selected">
+                  <mat-card-header class="order-card-header">
+                    <mat-card-title class="box-title"><!-- Paint protection -->Lakbeskyttelse</mat-card-title>
+                    <mat-card-subtitle>
+                      Vælg hvilke dele der skal beskyttes med lakbeskyttelsesfolie og tilføj eventuelt en beskrivelse af opgaven.
+                      <!-- Check for Paint Protection and add an optional comment -->
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content class="paint-tinting-card-body">
+                    <div class="help-block with-errors" id="shadeError"></div>
+                    <div class="row pl-3 pr-3">
+                      <div class="col-6">
+                        <div>
+                          <mat-hint class="text-error" *ngIf="!is_paint_protection_sub_check" class="text-danger">
+                            <!-- Select At Least One Paint Protection -->Vælg mindst én af valgmulighederne.
+                          </mat-hint>
+                        </div>
+                        <mat-checkbox class="paint-protection-checkbox"
+                                      *ngFor="let p of paintProtectionMaterialsFromMobilPlan; let i = index"
+                                      (change)="onChangePaint($event.source.value,$event.source.checked, i)"
+                                      value="{{p.product_no}}" name="paint"
+                                      formControlName="paint_protection_sub_check">
+                          {{p.name}}
+                        </mat-checkbox>
+                      </div>
+                      <div class="col-6">
+                        <mat-form-field class="input-field paint-protection-comment">
+                          <textarea matInput (change)="comment($event.target.value)"
+                                    formControlName="orderCommentTextArea"></textarea>
+                          <mat-placeholder class="placeholder"><!-- Comment to order -->Beskrivelse af opgaven</mat-placeholder>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                <div class="row pt-4">
+                  <div class="col-md-4 col-xs-12" style="padding-top: 5px">
+                    <div id="dAddressShow" style="display: none">
+                      <mat-form-field class="input-field w-100">
+                        <textarea matInput class="delivery-address-textarea" id="delivery_address" readonly
+                                  [value]="formData.deliveryAddress"></textarea>
+                        <mat-hint class="text-error"><span class="text-danger">* </span>
+                          <!-- contact us to change delivery address --> Kontakt os for at ændre leveringsadressen.
+                        </mat-hint>
+                        <mat-placeholder class="placeholder"><!-- Delivery Address -->Leveringsadresse</mat-placeholder>
+                        <div class="help-block with-errors" id="deliveryError"></div>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-xs-12" style="padding-top: 19px">
+                    <div id="reNumber" style="display: none">
+                      <mat-form-field class="input-field w-100">
+                        <input matInput name="form_data.requisition_number" class="requisition_number"
+                               id="requisition_number" required
+                               (keyup)="rek($event.target.value)" formControlName="requisitionNumberInput">
+                        <mat-error class="text-danger">
+                          <!-- Please enter requisition number -->
+                          Angiv venligst et rekvisitionsnummer.
+                        </mat-error>
+                        <mat-placeholder class="placeholder"><!-- Requisition number -->Rekvisitionsnummer</mat-placeholder>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-xs-12">
+                    <div id="sNumber" style="display: none">
+                      <div class="row">
+                        <div class="col-12">
+                          <a href="javascript:;" (click)="openAddSalesmanDialog()"
+                             class="float-right car-model-bottom-caption-link">
+                            <img src="assets/img/add-circle-green-512.png" width="20" style="margin-right:5px"><!-- Add salesman -->Tilføj sælger
+                          </a>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                      <mat-form-field class="input-field w-100">
+                        <mat-select class="salesman-option"
+                                    (selectionChange)="onChangeCustomer($event.value)"
+                                    formControlName="salesmanSelect">
+                          <mat-option></mat-option>
+                          <mat-option *ngFor="let s of salesmen" [(value)]="s.name">{{s.name}}</mat-option>
+                        </mat-select>
+                        <div class="help-block with-errors" id="salesmanError"></div>
+                        <mat-placeholder class="placeholder">Sælger</mat-placeholder>
+                        <mat-error class="text-danger">
+                          <!-- Please choose a salesman -->Vælg venligst en sælger.
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="float-right">
+              <button mat-button (click)="cancelButtonHandler()" class="step-cancel-button"><!-- Cancel --->ANNULLÉR</button>
+              <button mat-button (click)="nextButtonHandler(stepper, 0)" class="step-next-button"><!-- Next -->NÆSTE
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-step>
+
+
+    <!-- CUSTOM ORDER -->
+    <mat-step *ngIf="is_custom_order_show" [stepControl]="customOrderFormGroup">
+      <div class="row pt-5">
+        <div class="col-md-6 col-lg-12">
+          <form [formGroup]="customOrderFormGroup">
+            <ng-template matStepLabel><!-- CUSTOM ORDER DETAILS -->SPECIALOPGAVE</ng-template>
+            <h5 class="order-title">Opgave</h5>
+            <mat-divider></mat-divider>
+            <div class="pl-3">
+              <p class="leading-text mb-3 mt-3">
+                <!-- You can now customize your order for a any car model. You can
+                always <a class="car-model-bottom-caption-link"
+                          style="outline: 0;color: #8a1702; text-decoration: underline; cursor: pointer;"
+                          (click)="gobackPage()">goback</a> to the list of pre-defined
+                car models. -->
+
+                Du kan nu tilpasse opgaven for en vilkårlig bilmodel eller
+                <a class="car-model-bottom-caption-link"
+                   style="outline: 0;color: #8a1702; text-decoration: underline; cursor: pointer;"
+                   (click)="goToRegularOrder()">gå tilbage til listen over kendte bilmodeller</a>
+
+              </p>
+              <div class="row">
+                <div class="col-12">
+                  <mat-card class="window-card p-0">
+                    <mat-card-header class="order-card-header">
+                      <mat-card-title class="box-title">
+                        <!-- Car make -->Bilmærke
+                      </mat-card-title>
+                      <mat-card-subtitle>
+                        <!-- Car model -->Indtast dit bilmærke
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class="window-tinting-card-body pb-2">
+                      <div class="row">
+                        <div class="col-4">
+                          <mat-form-field class="input-field w-100 pl-3">
+                            <input matInput placeholder="Bilmærke *" formControlName="customOrderCarMake">
+                            <mat-error class="text-danger">
+                              <!-- Please enter a Car Make -->Indtast venligst bilmærke.
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                          <mat-form-field class="input-field w-100 pl-3">
+                            <input matInput placeholder="Bilmodel *" formControlName="customOrderCarModel">
+                            <mat-error class="text-danger">
+                              <!-- Please enter a Car Model -->Indtast venligst bilmodel.
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                          <mat-form-field class="input-field w-100 pl-3">
+                            <input matInput placeholder="Årgang *" formControlName="customOrderCarYear">
+                            <mat-error class="text-danger">
+                              <!-- Please enter a Year -->Indtast venligst årgang.
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <mat-form-field class="input-field pl-3" style="width: 100%">
+                            <textarea matInput
+                                      formControlName="customOrderAdditionalComment"></textarea>
+                            <mat-placeholder class="placeholder">
+                              <!-- Additional details about the model or comments * -->
+                              Yderligere oplysninger om bilmodellen eller kommentar til opgaven.
+                            </mat-placeholder>
+                            <mat-error class="text-danger">
+                              <!-- Please enter comment here -->
+                              Indtast venligst yderligere oplysninger om bilmodellen eller en kommentar til opgaven.
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <mat-card class="window-card p-0">
+                    <mat-card-header class="order-card-header">
+                      <mat-card-title class="box-title">
+                        <!-- Window tinting -->Autosolfilm
+                      </mat-card-title>
+                      <mat-card-subtitle>
+                        <!-- Add the windows you would like to tint. Tinting includes all windows behind B-frame. -->
+                        Tilføj de ruder du ønsker at tone.
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class="window-tinting-card-body pb-2">
+                      <!-- <mat-hint class="text-danger" *ngIf="!is_custom_order_window_added">
+                        Please add at least one window
+                      </mat-hint> -->
+                      <div class="row mt-2">
+                        <div class="col-12">
+                          <a href="javascript:" class="float-right car-model-bottom-caption-link"
+                             (click)="openAddWindowDialog()">
+                            <img src="assets/img/add-circle-green-512.png" width="20" style="margin-right:5px"> <!-- Add Window -->Tilføj rude
+                          </a>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-12">
+                          <table mat-table [dataSource]="windowTableDataSource" class="mat-elevation-z8 w-100">
+
+                            <!--- Note that these columns can be defined in any order.
+                                      The actual rendered columns are set as a property on the row definition" -->
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="window_value">
+                              <th mat-header-cell class="text-center" *matHeaderCellDef><!-- Window -->Rude</th>
+                              <td mat-cell class="text-center" *matCellDef="let element"> {{element.window_name}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="shade_value">
+                              <th mat-header-cell class="text-center" *matHeaderCellDef><!-- Shade -->Toning</th>
+                              <td mat-cell class="text-center" *matCellDef="let element"> {{element.shade_name}} </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="action">
+                              <th mat-header-cell class="text-center" *matHeaderCellDef>&nbsp;</th>
+                              <td mat-cell class="text-center" *matCellDef="let element">
+                                <mat-icon style="cursor: pointer" (click)="windowTableActionClickHandler(element)">
+                                  {{element.action}}</mat-icon>
+                              </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="windowTableColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: windowTableColumns;"></tr>
+                          </table>
+                        </div>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <mat-card class="window-card p-0">
+                    <mat-card-header class="order-card-header">
+                      <mat-card-title class="box-title"><!-- Paint protection --> Lakbeskyttelse</mat-card-title>
+                      <mat-card-subtitle>
+                        <!-- Check for Paint Protection and add an optional comment -->
+                        Vælg hvilke dele der skal beskyttes med lakbeskyttelsesfolie og tilføj eventuelt en beskrivelse af opgaven.
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="row pl-3 pr-3">
+                        <div class="col-6">
+                          <div style="margin-top:10px"></div>
+                          <mat-checkbox class="paint-protection-checkbox"
+                                        *ngFor="let p of paintProtectionMaterialsFromMobilPlan; let i = index"
+                                        (change)="onChangeCustomPaint($event.source.value,$event.source.checked, i)"
+                                        value="{{p.product_no}}" name="paint"
+                                        formControlName="customOrderPainProtectionCheck">
+                            {{p.name}}
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-6">
+                          <mat-form-field class="input-field w-100">
+                            <textarea matInput
+                                      formControlName="customOrderPaintProtectionComment"></textarea>
+                            <mat-placeholder class="placeholder"><!-- Comment to order --> Beskrivelse af opgaven</mat-placeholder>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+              <div class="row pt-4">
+                <div class="col-md-4 col-xs-12">
+                  <mat-form-field class="input-field w-100" style="padding-top: 5px">
+                    <textarea matInput class="delivery-address-textarea" id="delivery_address"
+                              readonly> {{customOrderFormData.deliveryAddress}}</textarea>
+                    <mat-placeholder class="placeholder"><!-- Delivery Address -->Leveringsadresse</mat-placeholder>
+                    <mat-hint class="text-error" style="align:start"><span class="text-danger">* </span>
+                      <!-- contact us to change delivery address -->
+                      Kontakt os for at ændre leveringsadresse.
+                    </mat-hint>
+                    <div class="help-block with-errors" id="deliveryError"></div>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 col-xs-12" style="padding-top: 19px">
+                  <mat-form-field class="input-field w-100">
+                    <input matInput name="form_data.requisition_number" class="requisition_number"
+                           id="requisition_number" required (keyup)="rek($event.target.value)"
+                           formControlName="customOrderRequisitionNumber">
+                    <mat-error class="text-danger">
+                      <!-- Please enter requisition number -->
+                      Indtast venligst rekvisitionsnummer.
+                    </mat-error>
+                    <mat-placeholder class="placeholder"><!-- Requisition number -->Rekvisitionsnummer</mat-placeholder>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <a href="javascript:" (click)="openAddSalesmanDialog()"
+                         class="float-right car-model-bottom-caption-link">
+                        <img src="assets/img/add-circle-green-512.png" width="20" style="margin-right:5px"><!-- Add salesman -->Tilføj sælger
+                      </a>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <mat-form-field class="input-field w-100">
+                    <mat-select id="salesman" class="salesman-option" required
+                                (selectionChange)="onChangeCustomer($event.value)"
+                                formControlName="customOrderSalesman">
+                      <mat-option></mat-option>
+                      <mat-option *ngFor="let s of custom_order_salesman" [(value)]="s.name">{{s.name}}</mat-option>
+                    </mat-select>
+                    <mat-placeholder class="placeholder"><!-- Salesman -->Sælger</mat-placeholder>
+                    <mat-error class="text-danger">
+                      <!-- Please choose a salesman -->
+                      Vælg venligst en sælger.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="float-right">
+              <button mat-button (click)="cancelButtonHandler()" class="step-cancel-button"><!-- Cancel -->ANNULLÉR</button>
+              <button mat-button (click)="nextButtonHandler(stepper, 0)" class="step-next-button"><!-- Next -->NÆSTE
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-step>
+
+
+    <!-- STEP 2 -->
+    <mat-step [stepControl]="stepTwoFormGroup">
+      <div class="row pt-5">
+        <div class="col-md-6 col-lg-12">
+          <form [formGroup]="stepTwoFormGroup">
+            <ng-template matStepLabel><!-- SCHEDULING -->VÆLG TIDSPUNKT</ng-template>
+            <h5 class="order-title">Tidspunkt</h5>
+            <mat-divider></mat-divider>
+            <p class="leading-text">
+              <!-- Select a date or fixed time of the day for the appointment with our installer -->
+              Vælg en dag eller et specifikt tidspunkt på dagen for booking af vores installatør.
+            </p>
+            <div class="help-block with-errors" id="schedulingError"></div>
+            <mat-radio-group aria-label="Select an option" value="fixed" (change)="onchangeDay($event.value)">
+              <div class="row pt-2 pb-2">
+                <mat-radio-button class="col-auto" value="day" name="2">
+                  <!-- Book a day-->
+                  Book en dato
+                </mat-radio-button>
+                <mat-radio-button class="col-auto" value="fixed" name="2">
+                  <!-- Schedule a fixed time for a day -->
+                  Book et specifikt tidspunkt
+                </mat-radio-button>
+              </div>
+            </mat-radio-group>
+            <div class="row mb-1 mt-2">
+              <div class="col-3">
+                <button mat-button (click)="previous()" class="previous-next-week float-left">
+                  <mat-icon aria-hidden="false" aria-label="Forrige uge">skip_previous</mat-icon>
+                  <!-- Previous week -->Forrige uge
+                </button>
+              </div>
+              <div class="col-6 text-center">
+                <div class="row">
+                  <div class="col-12">
+                    <span class="busyStrip"><!-- Busy -->Optaget</span>
+                    <span class="selectedStrip"><!-- Selected -->Din booking</span>
+                    <span class="freeStrip"><!-- Free -->Ledig</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <button mat-button class="previous-next-week float-right" (click)="next()">
+                  <!-- Next week -->Næste uge
+                  <mat-icon aria-hidden="false"
+                            aria-label="Næste uge">skip_next
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive" *ngIf="fixed">
+              <table class="table calendar 1 table-bordered" style="border: 1px solid grey">
+                <thead>
+                <!-- CALENDAR DATE HEADINGS FOR ROW ONE, TWO AND THREE -->
+                <tr>
+                  <th>{{formData.year}}<br>Uge {{formData.weekNumber}}</th>
+
+                  <!-- fill until data is loaded -->
+                  <th *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </th>
+                  <th *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </th>
+                  <th *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </th>
+                  <th *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </th>
+                  <th *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </th>
+                  <th *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </th>
+                  <th *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </th>
+
+                  <th *ngFor="let slot of dayCalendarTimeSlots; let i = index" style="cursor: pointer"
+                      [ngStyle]="{'cursor':slot.availability === 'FREE' ? 'pointer' : 'auto'}">
+                    <p class="pDays">
+                      {{weekDatesWithDate[i].nameOfWeekdayLabel}}<br/>{{weekDatesWithDate[i].date}}</p>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- ROW ONE -->
+                <tr>
+                  <td *ngIf="isCalendarDataReady" class="FREE"
+                      style="font-weight: bold">{{fixedTimeCalendar.rowOne.tableRowLabel}}</td>
+
+                  <!-- fill until data is loaded -->
+                  <td *ngIf="!isCalendarDataReady"></td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+
+                  <td *ngFor="let slot of fixedTimeCalendarTimeSlots[0]; let i = index"
+                      (click)="daySlot(0, i, $event.target, slot.availability, 'fixed')"
+                      [ngClass]="slot.availability? slot.availability : 'closed'"
+                      (mouseover)="slothover($event.target, slot.availability)"
+                      (mouseleave)="slotleave($event.target, slot.availability)">
+                    {{slot.label}}
+                  </td>
+
+                </tr>
+
+                <!-- ROW TWO -->
+                <tr>
+                  <td *ngIf="isCalendarDataReady" class="FREE"
+                      style="font-weight: bold">{{fixedTimeCalendar.rowTwo.tableRowLabel}}</td>
+
+                  <!-- fill until data is loaded -->
+                  <td *ngIf="!isCalendarDataReady"></td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+
+                  <td *ngFor="let slot of fixedTimeCalendarTimeSlots[1]; let i = index"
+                      (click)="daySlot(1, i, $event.target, slot.availability,'fixed')"
+                      [ngClass]="slot.availability? slot.availability : 'closed'"
+                      (mouseover)="slothover($event.target, slot.availability)"
+                      (mouseleave)="slotleave($event.target, slot.availability)">
+                    {{slot.label}}
+                  </td>
+
+                </tr>
+
+                <!-- ROW THREE -->
+                <tr>
+                  <td *ngIf="isCalendarDataReady" class="FREE"
+                      style="font-weight: bold">{{fixedTimeCalendar.rowThree.tableRowLabel}}</td>
+
+                  <!-- fill until data is loaded -->
+                  <td *ngIf="!isCalendarDataReady"></td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+
+                  <td *ngFor="let slot of fixedTimeCalendarTimeSlots[2]; let i = index"
+                      (click)="daySlot(2, i, $event.target, slot.availability,'fixed')"
+                      [ngClass]="slot.availability? slot.availability : 'closed'"
+                      (mouseover)="slothover($event.target, slot.availability)"
+                      (mouseleave)="slotleave($event.target, slot.availability)">
+                    {{slot.label}}
+                  </td>
+                </tr>
+                <tr></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- ANY TIME DURING THE DAY -->
+            <div class="table-responsive" *ngIf="day">
+              <table class="table calendar table-bordered" style="border: 1px solid grey">
+                <thead>
+                <tr>
+                  <td>{{formData.year}}<br>Uge {{formData.weekNumber}}</td>
+
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+                  <td class="FREE" *ngIf="!isCalendarDataReady">
+                    <p class="priceText"></p>
+                  </td>
+
+                  <td *ngFor="let slot of dayCalendarTimeSlots; let i = index"
+                      [ngClass]="slot.availability? slot.availability : 'closed'"
+                      (click)="daySlot(0, i, $event.target, slot.availability,'day')"
+                      (mouseover)="slothover($event.target, slot.availability)"
+                      (mouseleave)="slotleave($event.target, slot.availability)">
+                    {{weekDatesWithDate[i].nameOfWeekdayLabel}}<br/>{{weekDatesWithDate[i].date}}<br>
+                    {{slot.label}}
+                  </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row mb-3">
+              <div class="col-4">
+                <mat-card class="p-0">
+                  <mat-card-header class="p-2 b-grey custom-mat-header">
+                    <mat-card-title class="m-0 box-title"><!-- Work duration -->Opgavens varighed</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="p-2" *ngIf="isCalendarDataReady">
+                    <div class="calender-selection-box-title">
+                      {{calendarResponse.duration}} <!-- minutes -->minutter
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="col-4">
+                <mat-card class="p-0" *ngIf='selectedTimeSlotId'>
+                  <mat-card-header class="p-2 b-grey custom-mat-header">
+                    <mat-card-title class="m-0 box-title"><!-- Scheduled time -->Tidspunkt</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="p-2">
+                    <div class="calender-selection-box-title">
+                      {{scheduledTime}}
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="col-4">
+                <mat-card class="p-0" *ngIf='selectedTimeSlotId'>
+                  <mat-card-header class="p-2 b-grey custom-mat-header">
+                    <mat-card-title class="m-0 box-title"><!-- Price -->Pris</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="p-2">
+                    <div class="calender-selection-box-title">
+                      {{scheduledPrice}}
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+            <mat-hint class="leading-text">
+              <span class="text-danger">OBS:</span>
+              <!-- We preserve the right to change the scheduled appointment. -->
+              Vi forbeholder os retten til at ændre det planlagte tidspunkt.
+            </mat-hint>
+
+            <div class="d-block float-right">
+              <button mat-button class="step-cancel-button" (click)="cancelButtonHandler(stepper)"><!-- Cancel -->ANNULLÉR</button>
+              <button mat-button class="step-prev-button"
+                      (click)="prevButtonHandler(stepper, 1)"><!-- Previous -->FORRIGE
+              </button>
+              <button mat-button class="step-next-button"  *ngIf="selectedTimeSlotId"
+                      (click)="nextButtonHandler(stepper, 1)"><!-- Next -->NÆSTE
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-step>
+
+
+    <!-- STEP 3 -->
+    <mat-step [stepControl]="stepThreeFormGroup">
+      <div class="row pt-5">
+        <div class="col-md-6 col-lg-12">
+          <form [formGroup]="stepThreeFormGroup">
+            <ng-template matStepLabel><!-- CONFIRMATION -->BEKRÆFT BOOKING</ng-template>
+            <h5 class="order-title"><!-- Confirm your order -->Bekræft din booking</h5>
+            <mat-divider></mat-divider>
+            <p class="leading-text">
+              <!-- Please review your order details carefully before submitting
+              your order. Note that you free of charge can cancel or change
+              your order until 24 hours before the appointment. -->
+              Gennemse omhyggeligt bookingen før du godkender den. {{summary.cancelOrderInformation}}
+            </p>
+
+            <div class="row pt-3">
+              <div class="col-12">
+                <div class="row pt-3">
+                  <div class="col-md-12 col-ls-12">
+                    <mat-card class="p-0">
+                      <mat-card-header class="p-2 b-grey custom-mat-header">
+                        <mat-card-title class="m-0 box-title" style="text-align: left">
+                          Booking detaljer
+                        </mat-card-title>
+                      </mat-card-header>
+                      <mat-card-content class="p-2">
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field class="w-100 input-field" *ngIf="summary.makeAndModels">
+                              <input matInput readonly placeholder="Bilmærke, model og årgang"
+                                     value="{{summary.makeAndModels}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field"
+                                            *ngIf="summary.shades && summary.shades.length > 0">
+                              <input matInput readonly placeholder="Toning" value="{{summary.shades}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field"
+                                            *ngIf="summary.edgeFittings && summary.edgeFittings.length > 0">
+                              <input matInput readonly placeholder="Tilpasning af solfilmen" value="{{summary.edgeFittings}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field"
+                                            *ngIf="summary.paintProtections && summary.paintProtections.length > 0">
+                              <input matInput readonly placeholder="Lakbeskyttelse"
+                                     *ngFor="let paint of summary.paintProtections" value="{{paint}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field" *ngIf="summary.deliveryAddress">
+                              <input matInput readonly placeholder="Leveringsadresse"
+                                     value="{{summary.deliveryAddress}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field"
+                                            *ngIf="summary.customMakeAndModelComment">
+                          <textarea matInput readonly placeholder="Yderligere oplysninger om bilmodellen"
+                                    [value]="summary.customMakeAndModelComment"></textarea>
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field"
+                                            *ngIf="summary.additionalComments">
+                          <textarea matInput readonly placeholder="Kommentarer til opgaven"
+                                    [value]="summary.additionalComments"></textarea>
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <mat-form-field class="w-100 input-field" *ngIf="summary.requisitionNumber">
+                              <input matInput readonly placeholder="Rekvisitionsnummer"
+                                     value="{{summary.requisitionNumber}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field" *ngIf="summary.salesman">
+                              <input matInput readonly placeholder="Sælger" value="{{summary.salesman}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field" *ngIf="summary.workDuration">
+                              <input matInput readonly placeholder="Opgavens varighed"
+                                     value="{{summary.workDuration}} minutter">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field" *ngIf="summary.scheduledTime">
+                              <input matInput readonly placeholder="Tidspunkt" value="{{summary.scheduledTime}}">
+                            </mat-form-field>
+                            <mat-form-field class="w-100 input-field" *ngIf="summary.price">
+                              <input matInput readonly placeholder="Pris" value="{{summary.price}}">
+                            </mat-form-field>
+                            <!--<mat-form-field class="w-100 input-field" *ngIf="summary.cancelOrderInformation">
+                          <textarea matInput readonly placeholder="Cancel Order Information"
+                                    [value]="summary.cancelOrderInformation"></textarea>
+                            </mat-form-field> -->
+                          </div>
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="float-right">
+              <button mat-button class="step-cancel-button" (click)="cancelButtonHandler()"><!-- Cancel -->ANNULLÉR</button>
+              <button mat-button class="step-prev-button"
+                      (click)="prevButtonHandler(stepper, 2)"><!-- Previous -->FORRIGE
+              </button>
+              <button mat-button class="step-next-button" (click)="submitButtonHandler()"><!-- Submit -->ACCEPTÉR</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<div class="space"></div>

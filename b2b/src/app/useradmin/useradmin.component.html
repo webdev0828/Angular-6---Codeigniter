@@ -1,0 +1,159 @@
+<app-header active="home"></app-header>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-circus" fullScreen="false">
+  <p style="font-size: 20px; color: white"></p>
+</ngx-spinner>
+
+<div class="container selectContainer">
+  <mat-form-field class="input-field w-50">
+    <mat-select placeholder="Autodealer" value="" (selectionChange)="getUsersAndAssignedInstallers($event.value)">
+      <mat-optgroup label="Auto Dealers">
+        <mat-option *ngFor="let dealer of autoDealers; let i =index;"
+                    [value]="dealer.id + '_' + dealer.email + '_' + dealer.name">
+          {{dealer.name}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="container tableContainer">
+  <div class="alert alert-success" role="alert" *ngIf="alertShow">
+    {{alertText}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="alertShowDeactive">
+    {{alertTextDeactive}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="loginError">
+    {{loginErrorText}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="mt-auto mat-elevation-z8">
+    <table mat-table [dataSource]="tableDataSource" matSort>
+
+      <!-- Contact Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header><!-- Contact -->Navn</th>
+        <td mat-cell *matCellDef="let element" class="justify-content-center"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element" class="justify-content-center"> {{element.email}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header><!-- Status -->Adgang</th>
+        <td mat-cell *matCellDef="let element" class="justify-content-center">
+          <mat-chip-list aria-label="">
+            <mat-chip class="activeChip" *ngIf="element.already == 'yes' && element.status == 'active'"><!-- Active -->Ja
+            </mat-chip>
+            <mat-chip class="disabledChip" *ngIf="element.already == 'yes' && element.status == 'disable'"><!-- Disabled -->Nej
+            </mat-chip>
+            <mat-chip class="notGrantedChip" *ngIf="element.already == 'no' && element.status == 'disable'"><!-- Access not granted -->Ny bruger
+            </mat-chip>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+
+      <!-- Active Column -->
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef><!-- Active -->Giv/fjern adgang</th>
+        <td mat-cell *matCellDef="let element" class="justify-content-center custom-checker">
+          <div>
+            <mat-checkbox name="{{element.id}}" *ngIf="element.already == 'no' && element.status == 'disable'"
+                          value="active_{{element.email}}_{{element.id}}_{{element.name}}"
+                          id="{{element.id}}"
+                          matTooltip="Giv brugeren adgang. Der sendes automatisk en velkomst-mail til brugeren."
+                           (click)="openUserActiveDialog(element)"
+                          [checked]="element.is_actived" disabled>
+            </mat-checkbox>
+
+            <mat-checkbox name="{{element.id}}" *ngIf="element.already == 'yes' && element.status == 'disable'"
+                          value="active_{{element.email}}_{{element.id}}_{{element.name}}"
+                          (click)="openUserActiveDialog(element)"
+                          id="{{element.id}}"
+                          matTooltip="Giv brugeren adgang. Brugeren har tidligere modtaget en velkomst-mail."
+                          [checked]="element.is_actived" disabled>
+            </mat-checkbox>
+
+            <mat-checkbox name="{{element.id}}" *ngIf="element.already == 'yes' && element.status == 'active'"
+                          value="disable_{{element.email}}_{{element.id}}_{{element.name}}"
+                          (click)="openUserActiveDialog(element)"
+                          id="{{element.id}}"
+                          matTooltip="Fjern brugerens adgang."
+                          [checked]="element.is_actived" disabled>
+            </mat-checkbox>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Active Column -->
+      <ng-container matColumnDef="login">
+        <th mat-header-cell *matHeaderCellDef></th>
+
+        <td mat-cell *matCellDef="let element" class="justify-content-center">
+          <a *ngIf="element.already == 'yes' && element.status == 'active'" class="link_color"
+             (click)="loginAsAutoDealer(element.email, element)">
+            <button mat-button style="font-family: 'Open Sans'; font-size: 12px">LOGIN</button>
+          </a>
+        </td>
+
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+  <div class="aboutEmployeeContainer mt-5" *ngIf="employees && employees.length > 0">
+    <h5 class="order-title">Tilknyttede installatører</h5>
+    <mat-divider></mat-divider>
+
+    <div class="alert alert-danger alert-dismissible" *ngIf="noAssigned">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      {{noAssignedText}}
+    </div>
+    <div class="alert alert-success alert-dismissible" *ngIf="assignedEmployee">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      {{assignedText}}
+    </div>
+
+    <div class="pl-3">
+      <p class="leading-text">Vælg primær installatører for {{customerName}}</p>
+    </div>
+    <div *ngIf="all">
+      <div class="form-check" *ngFor="let e of employees">
+        <label class="form-check-label" for="formCheck-1">
+          <input class="form-check-input" value="assign_{{e.employeeId}}"
+                 (change)="assignEmployee($event.target.value,e)"
+                 type="checkbox" id="formCheck-1">
+          {{e.firstname}} {{e.lastname}}
+        </label>
+      </div>
+    </div>
+
+    <div *ngIf="assignedEmployees">
+      <div class="form-check" *ngFor="let e of employees">
+        <label class="form-check-label" for="formCheck-1">
+          <input *ngIf="e.assigned == 'no'" class="form-check-input" (change)="assignEmployee($event.target.value,e)"
+                 value="assign_{{e.employeeId}}" type="checkbox" id="formCheck-1">
+          <input *ngIf="e.assigned == 'yes'" checked="checked" (change)="assignEmployee($event.target.value,e)"
+                 class="form-check-input" value="unassign_{{e.employeeId}}" type="checkbox" id="formCheck-1">
+          {{e.firstname}} {{e.lastname}}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="space"></div>

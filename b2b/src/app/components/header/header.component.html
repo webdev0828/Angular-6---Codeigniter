@@ -1,0 +1,71 @@
+<div class="navbar-container">
+
+    <nav *ngIf="user" class="navbar navbar-light navbar-expand-md navigation-clean p-0">
+
+        <div class="container nav-container">
+            <a class="navbar-brand" href="#"><img src="assets/img/solfilm.png" class="solfilm-logo admin-name">{{name}}</a><button
+                class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse navbar-collapse-container" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" [ngClass]="active=='home' ? 'activeNav' : ''" [routerLink]="['/']"
+                            routerLinkActive="router-link-active"><!-- BOOKINGS--> BOOKINGER</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" style="cursor: pointer" [ngClass]="active=='order' ? 'activeNav' : ''"
+                            (click)="gotoPage('order')"><!-- BOOK AN APPOINTMENT -->BOOK EN AFTALE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/changepassword']" [ngClass]="active=='changepassword' ? 'activeNav' : ''"
+                             routerLinkActive="router-link-active"><!-- CHANGE PASSWORD -->SKIFT ADGANGSKODE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link logoutclass " (click)="logout()">LOG
+                            OUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="navbar-container">
+
+    <nav *ngIf="admin" class="navbar navbar-light navbar-expand-md navigation-clean p-0">
+
+        <div class="container nav-container">
+            <a class="navbar-brand" [routerLink]="['/admin']"><img src="assets/img/solfilm.png"
+                    class="solfilm-logo admin-name">Administrator</a><button class="navbar-toggler" data-toggle="collapse"
+                data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse navbar-collapse-container" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/admin']" [ngClass]="active=='home' ? 'activeNav' : ''"
+                            routerLinkActive="router-link-active"><!-- AUTODEALERS --> AUTOFORHANDLERE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/employees']" [ngClass]="active=='employees' ? 'activeNav' : ''"
+                            routerLinkActive="router-link-active"><!-- EMPLOYEES -->MEDARBEJDERE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/mailcredentials']" [ngClass]="active=='mailcredentials' ? 'activeNav' : ''"
+                            routerLinkActive="router-link-active"><!-- EMAIL CREDENTIALS --> MAIL SERVER</a>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/changepassword']" [ngClass]="active=='changepassword' ? 'activeNav' : ''"
+                            routerLinkActive="router-link-active"><!-- CHANGE PASSWORD -->SKIFT ADGANGSKODE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link logoutclass" (click)="logout()"><!-- LOG OUT -->LOG UD</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav *ngIf="auto_admin" class="navbar navbar-light navbar-expand-md navigation-clean p-0">
+        <div class="container nav-container">
+            <a class="navbar-brand" [routerLink]="['/admin']"><img src="assets/img/solfilm.png"
+                    class="solfilm-logo admin-name">{{autoDealerName}}</a><button class="navbar-toggler" data-toggle="collapse"
+                data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse navbar-collapse-container" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+
+                    <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="['/']" [ngClass]="active=='home' ? 'activeNav' : ''"
+                            routerLinkActive="router-link-active">BOOKINGER</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" style="cursor: pointer" [ngClass]="active=='order' ? 'activeNav' : ''"
+                            (click)="gotoPage('order')">BOOK EN AFTALE</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link logoutclass" (click)="logout()"><!-- LOG OUT-->LOG UD</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link logoutclass" (click)="logoutAs()"><!-- LOG OUT FROM --> LOG UD FRA {{name}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

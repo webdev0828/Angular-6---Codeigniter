@@ -1,0 +1,43 @@
+
+<!-- <app-header></app-header> -->
+
+<div class="login-clean">
+
+    <div *ngIf="passwordChanged" class="alert alert-info change_alert" role="alert">
+        <!-- Password needs to be changed in order to continue -->
+      Det er første gang du logger på og derfor nødvendigt, at du ændrer din adgangskode.
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div> <br>
+    <form #form="ngForm" (ngSubmit)="ResetPassword(form.value)">
+        <div class="alert alert-success" role="alert" *ngIf="passwordChangeStatus">
+            {{passwordChangedText}}
+        </div>
+        <div *ngIf="emailErrorDiv" class="alert alert-danger" role="alert">
+            {{emailErrorMessage}}
+        </div>
+        <div class="alert alert-danger change_alert" role="alert" *ngIf="passwordMismatchError">
+            {{passwordErrortext}}
+        </div>
+        <h2 class="sr-only">Login Form</h2>
+        <h3 *ngIf="showForm"><!-- Change password --> SKIFT ADGANGSKODE<br></h3>
+        <br>
+        <div *ngIf="showForm">
+        <p *ngIf="passwordChanged"><!-- This is your first login and we recommend you to change your password.-->Det er første gang du logger på og derfor nødvendigt, at du ændrer din adgangskode. Når du har ændret din adgangskode, skal du logge ind med den nye.</p>
+        <small *ngIf="passwordError" class="form-text text-danger mb-1"><!-- Minimum password length should be atleast 6 characters. --> Adgangskoden skal have en længde på minimum 6 tegn.</small>
+        <div class="form-group">
+          <input class="form-control" [ngClass]="{'is-invalid': passwordError == true}" type="password"
+          ngModel required="" (input)="passwordChange($event.target.value)" name="newPassword" placeholder="Adgangskode"></div>
+        <small *ngIf="newPasswordError" class="form-text text-danger mb-1"><!-- Minimum password length should be atleast 6 characters. --> Adgangskoden skal have en længde på minimum 6 tegn.</small>
+        <div class="form-group">
+          <input class="form-control" [ngClass]="{'is-invalid': newPasswordError == true}" type="password"
+          ngModel required="" (input)="passwordChange1($event.target.value)" name="confNewPassword" placeholder="Indtast adgangskoden igen"></div>
+
+        <div class="form-group"><button class="btn btn-primary btn-block btn-send" type="submit"><!-- Change -->SKIF</button>
+        </div>
+      </div>
+        <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="forgot"><!-- Back to Login -->Tilbage til login siden</a>
+    </form>
+</div>

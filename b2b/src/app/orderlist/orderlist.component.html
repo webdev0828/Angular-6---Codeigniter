@@ -1,0 +1,185 @@
+<app-header active="home"></app-header>
+
+<div class="container">
+  <ngx-spinner
+    bdColor="rgba(51, 51, 51, 0.8)"
+    size="large"
+    color="#fff"
+    type="ball-circus"
+  >
+    <p style="font-size: 20px; color: white"></p>
+  </ngx-spinner>
+  <div class="row order-container pt-4">
+    <div class="col-md-6 col-lg-12">
+      <div class="row">
+        <div class="col-md-6 col-lg-12">
+          <div
+            class="alert alert-danger alert-dismissible"
+            *ngIf="errorMessage"
+          >
+            <a href="#" class="close" data-dismiss="alert" aria-label="close"
+              >&times;</a
+            >
+            {{ errorText }}
+          </div>
+
+          <h5 class="order-title">Bookinger</h5>
+          <p *ngIf="noRecord" class="leading-text">
+            <br />Her vil du kunne se dine fremtidige bookinger. Du kan oprette
+            den første booking ved at vælge menu-punktet "BOOK EN AFTALE".
+          </p>
+        </div>
+      </div>
+      <div class="mt-auto mat-elevation-z8 order-table-container">
+        <table
+          mat-table
+          [dataSource]="tableDataSource"
+          matSort
+          class="orderTable"
+        >
+          <!-- Time Column -->
+          <ng-container matColumnDef="scheduledTimeDisplayFriendly">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <!-- Time -->Tidspunkt
+            </th>
+            <td
+              (mousemove)="showSummaryTooltip(element, $event)"
+              (click)="orderTableClickHandler($event, element)"
+              (mouseleave)="hideSummaryTooltip($event)"
+              mat-cell
+              *matCellDef="let element"
+            >
+              {{ element.scheduledTimeDisplayFriendly }}
+            </td>
+          </ng-container>
+
+          <!-- Requisition Column -->
+          <ng-container matColumnDef="requisitionNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <!-- Requisition no. -->Rekvisitionsnummer
+            </th>
+            <td
+              (mousemove)="showSummaryTooltip(element, $event)"
+              (click)="orderTableClickHandler($event, element)"
+              (mouseleave)="hideSummaryTooltip($event)"
+              mat-cell
+              *matCellDef="let element"
+            >
+              {{ element.requisitionNumber }}
+            </td>
+          </ng-container>
+
+          <!-- Make model year Column -->
+          <ng-container matColumnDef="makeAndModel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <!-- Make, model, year -->Bilmærke, model og årgang
+            </th>
+            <td
+              (mousemove)="showSummaryTooltip(element, $event)"
+              (click)="orderTableClickHandler($event, element)"
+              (mouseleave)="hideSummaryTooltip($event)"
+              mat-cell
+              *matCellDef="let element"
+            >
+              {{ element.makeAndModel }}
+            </td>
+          </ng-container>
+
+          <!-- Price Column -->
+          <ng-container matColumnDef="price">
+            <th
+              style="text-align: center;"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              <!-- Price -->Pris
+            </th>
+            <td
+              style="text-align: right;padding-right:40px"
+              (mousemove)="showSummaryTooltip(element, $event)"
+              (click)="orderTableClickHandler($event, element)"
+              (mouseleave)="hideSummaryTooltip($event)"
+              mat-cell
+              *matCellDef="let element"
+            >
+              {{ element.price }}
+            </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td style="cursor:default" mat-cell *matCellDef="let element">
+              <mat-chip-list aria-label="">
+                <div
+                  disabled
+                  *ngIf="element.status == 'PENDING'"
+                  class="pendingChip status_btn"
+                >
+                  <!-- Pending -->
+                  Afventer
+                </div>
+                <div
+                  disabled
+                  *ngIf="element.status == 'COMPLETED'"
+                  class="completedChip status_btn"
+                >
+                  <!-- Completed -->Afsluttet
+                </div>
+                <div
+                  disabled
+                  *ngIf="element.status == 'CANCELLED'"
+                  class="cancelledChip status_btn"
+                >
+                  <!-- Cancelled -->Annulleret
+                </div>
+                <div
+                  disabled
+                  *ngIf="element.status == 'CLOSED'"
+                  class="closedChip status_btn"
+                >
+                  <!-- Closed -->Lukket
+                </div>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td
+              (mousemove)="showSummaryTooltip(element, $event)"
+              (mouseleave)="hideSummaryTooltip($event)"
+              mat-cell
+              *matCellDef="let element"
+            >
+              <a
+                *ngIf="
+                  element.scheduledTime >= currentDate &&
+                  element.status == 'PENDING'
+                "
+                class="link_color"
+                (click)="openDialog($event, element)"
+              >
+                <button
+                  mat-button
+                  style="font-family: 'Open Sans'; font-size: 12px"
+                >
+                  AFLYS BOOKING
+                </button>
+              </a>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[20, 50, 100]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

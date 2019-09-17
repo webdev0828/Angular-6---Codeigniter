@@ -1,0 +1,114 @@
+<div class="row order-dialog">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <h1 mat-dialog-title class="modal-title">
+          <!-- Order Summary -->Order Summary
+        </h1>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-md-12 col-ls-12">
+        <mat-card class="p-0">
+          <mat-card-content class="p-2 custom-mat-content">
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field class="w-100" *ngIf="data.requisitionNumber">
+                  <input
+                    matInput
+                    placeholder="RequisitionNumber"
+                    value="{{ data.requisitionNumber }}"
+                  />
+                </mat-form-field>
+                <mat-form-field
+                  class="w-100"
+                  *ngIf="data.salesman && data.salesman != ''"
+                >
+                  <input
+                    matInput
+                    placeholder="Salesman Name"
+                    value="{{ data.salesman }}"
+                  />
+                </mat-form-field>
+                <mat-form-field
+                  class="w-100"
+                  *ngIf="data.deliveryAddress != ''"
+                >
+                  <input
+                    matInput
+                    placeholder="Delivery Address:"
+                    value="{{ data.deliveryAddress }}"
+                  />
+                </mat-form-field>
+                <mat-form-field class="w-100" *ngIf="data.makeAndModels != ''">
+                  <input
+                    matInput
+                    placeholder="Make, Model and Year"
+                    value="{{ data.makeAndModels }}"
+                  />
+                </mat-form-field>
+                <mat-form-field class="w-100" *ngIf="data.edgeFittings != ''">
+                  <input
+                    matInput
+                    placeholder="Fitting"
+                    value="{{ data.edgeFittings }}"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field class="w-100" *ngIf="data.shades != ''">
+                  <input
+                    matInput
+                    placeholder="Shades"
+                    value="{{ data.shades }}"
+                  />
+                </mat-form-field>
+                <mat-form-field
+                  class="w-100"
+                  *ngIf="
+                    data.paintProtections && data.paintProtections.length > 0
+                  "
+                >
+                  <input
+                    matInput
+                    placeholder="Paint Protection"
+                    *ngFor="let paint of data.paintProtections"
+                    value="{{ paint }}"
+                  />
+                </mat-form-field>
+                <mat-form-field class="w-100" *ngIf="data.workDuration">
+                  <input
+                    matInput
+                    placeholder="Work Duration"
+                    value="{{ data.workDuration }}"
+                  />
+                </mat-form-field>
+                <mat-form-field class="w-100" *ngIf="data.scheduledTime">
+                  <input
+                    matInput
+                    placeholder="ScheduledTime"
+                    value="{{ data.scheduledTime }}"
+                  />
+                </mat-form-field>
+                <mat-form-field class="w-100" *ngIf="data.price">
+                  <input
+                    matInput
+                    placeholder="Price"
+                    value="{{ data.price }}"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button mat-button class="float-right" (click)="onNoClick()">
+          <!-- No -->NEJ
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

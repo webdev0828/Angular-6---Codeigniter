@@ -1,0 +1,36 @@
+You can add global styles to this file, and also import other style files
+
+/* */
+
+
+/* custom style for material select in admin page*/
+.mat-form-field-wrapper {
+    width: 200%;
+}
+
+/* Login Form custom */
+.loginEmailInput {
+    width: 100%;
+}
+
+.loginPassInput {
+    width: 100%;
+}
+
+
+/* import OpenSans font*/
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url(assets/fonts/OpenSans/OpenSans-Regular.ttf) format('opentype');
+}
+
+body {
+    font-family: 'Open Sans';
+}
+
+
+/* order stepper customize */
+.mat-stepper-horizontal {
+    margin-top: 40px;
+}

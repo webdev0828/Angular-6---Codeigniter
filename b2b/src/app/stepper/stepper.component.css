@@ -1,0 +1,275 @@
+table tr td {
+  background-color: #f5f5f5;
+}
+
+table tr td:hover {
+  background: whitesmoke;
+}
+
+td .closed {
+  background-color: red;
+}
+
+.tmline {
+  max-width: 20% !important;
+  flex: 0 0 20% !important;
+}
+.tmline1 {
+  max-width: 80% !important;
+  flex: 0 0 80% !important;
+}
+.tmline1 .timestamp {
+  padding: 0px 14.3px !important;
+}
+.help-block {
+  color: red !important;
+}
+.schText {
+  color: black;
+  font-size: 23px;
+  text-decoration: none;
+}
+.schText1 {
+  font-weight: 700;
+  color: black !important;
+  font-size: 15px !important;
+  text-decoration: none !important;
+  cursor: text !important;
+}
+.faicon {
+  font-size: 15px !important;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.order-detail-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-cancel-button, .step-next-button, .step-prev-button {
+  margin: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 12px 0;
+  line-height: 20px;
+  font-family: 'Open Sans';
+}
+
+.step-cancel-button {
+  background-color:#f8f9fa !important;
+}
+
+.step-next-button {
+  background-color: rgba(40, 167, 69, .5) !important;
+}
+
+.step-prev-button {
+  background-color: rgba(138, 236, 204, .5) !important;
+}
+
+.previous-next-week {
+  font-family: 'Open Sans';
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.order-title {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.leading-text{
+  font-family: "Open Sans";
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.placeholder {
+  font-family: "Open Sans";
+  font-size: 12px;
+}
+
+.car-model-bottom-caption {
+  font-family: "Open Sans";
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+.car-model-bottom-caption-link {
+  font-family: "Open Sans" !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #8a1702 !important;
+  text-decoration: none !important;
+}
+
+.input-field {
+  font-family: "Open Sans";
+  font-size: 14px;
+}
+
+.window-checkbox {
+  display: block;
+  margin: 10px;
+  font-family: 'Open Sans';
+  font-size: 12px;
+}
+
+.paint-checkbox {
+  display: block;
+  margin: 10px;
+  font-family: 'Open Sans';
+  font-size: 12px;
+}
+
+.window-card {
+  margin: 10px 0;
+}
+
+.order-card-header {
+  background-color: #f7f7f7;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.box-title {
+  font-size: 16px;
+  font-family: 'Open Sans';
+  font-weight: bold;
+}
+
+.window-tinting-card-body {
+  width: 100%;
+  padding: 10px 10px 0px
+}
+
+.shade-radiobutton {
+  margin: 0 15px;
+}
+
+.edge-radiobutton {
+  display: block;
+  width: 100%;
+  padding-left: 5px;
+  margin-bottom: 3px;
+}
+
+.paint-card {
+  margin: 10px 0;
+}
+
+.paint-tinting-card-header {
+  background-color: #f7f7f7;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.paint-card-title {
+  font-size: 12px;
+  font-family: 'Open Sans';
+  font-weight: bold;
+}
+
+.paint-tinting-card-body {
+  width: 100%;
+  padding: 10px 10px 0px
+}
+
+.paint-protection-checkbox{
+  display: inline-block;
+  width: 50%;
+}
+
+.paint-protection-comment {
+  width: 100%;
+}
+
+.dAddressShow {
+  /* height: 100%; */
+}
+
+.address-caption {
+  font-size: 12px;
+  font-family: 'Open Sans';
+  font-weight: normal;
+}
+
+.delivery-address-textarea-container {
+  /* width: 34%; */
+  margin-left: 15px;
+}
+
+.reNumber {
+  /* height: 100%; */
+}
+
+.sNumber {
+  /* height: 100%; */
+}
+
+.requisition-number-input {
+  width: 34%;
+  margin-left: 15px;
+  font-size: 12px;
+}
+
+.requisition_number {
+  width: 100%;
+}
+.salesman-select {
+  width: 34%;
+}
+
+.scheduling-caption {
+  font-family: "Open Sans";
+  font-size: 12px;
+}
+
+.b-grey {
+  background-color: #f5f5f5;
+}
+
+.text-error {
+  color: #790000 !important;
+  font-family: "Open Sans";
+  font-size: 12px;
+}
+
+.text-danger {
+  color: #790000 !important;
+}
+
+.b-r-50 {
+  border-radius: 50px !important;
+  font-size: 14px !important;
+}
+
+.calender-selection-box-title {
+  font-size: 14px;
+  font-family: "Open Sans" !important;
+  text-align: center;
+}
+
+.CLOSED {
+  background-color: #D3D3D3 !important;
+}
+
+.selected {
+  background-color: rgba(40, 167, 69, .5) !important;
+}
+
+::ng-deep .mat-step-label {
+  font-family: "Open Sans" !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #3f3f3f !important;
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}

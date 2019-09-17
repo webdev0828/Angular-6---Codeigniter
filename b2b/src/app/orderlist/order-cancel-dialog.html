@@ -1,0 +1,22 @@
+<div class="row order-dialog">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                 <h1 mat-dialog-title class="modal-title"><!-- Cancel Order -->Aflys booking</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div mat-dialog-content class="modal-caption">
+                    <p class="modal-caption-text"><!-- Are you sure you want to cancel -->Er du sikker på, at du vil aflyse "{{ data.makeModelYear }}" ?</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button mat-button class="float-right" (click)="onYesClick()" [mat-dialog-close]="data.makeModelYear" cdkFocusInitial><!-- Yes -->JA</button>
+                <button mat-button class="float-right" (click)="onNoClick()"><!-- No -->NEJ</button>
+            </div>
+        </div>
+    </div>
+</div>

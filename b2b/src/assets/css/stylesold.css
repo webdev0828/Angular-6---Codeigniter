@@ -1,0 +1,242 @@
+.table thead th {
+  margin-left:0px;
+  padding-left:0px;
+}
+
+.login-clean {
+  background:#f1f7fc;
+  padding:80px 0;
+}
+
+.login-clean form {
+  max-width:320px;
+  width:90%;
+  margin:0 auto;
+  background-color:#ffffff;
+  padding:40px;
+  border-radius:4px;
+  color:#505e6c;
+  box-shadow:1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.login-clean .illustration {
+  text-align:center;
+  padding:0 0 20px;
+  font-size:100px;
+  color:rgb(244,71,107);
+}
+
+.login-clean form .form-control {
+  background:#f7f9fc;
+  border:none;
+  border-bottom:1px solid #dfe7f1;
+  border-radius:0;
+  box-shadow:none;
+  outline:none;
+  color:inherit;
+  text-indent:8px;
+  height:42px;
+}
+
+.login-clean form .btn-primary {
+  background:#f4476b;
+  border:none;
+  border-radius:4px;
+  padding:11px;
+  box-shadow:none;
+  margin-top:26px;
+  text-shadow:none;
+  outline:none !important;
+}
+
+.login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
+  background:#eb3b60;
+}
+
+.login-clean form .btn-primary:active {
+  transform:translateY(1px);
+}
+
+.login-clean form .forgot {
+  display:block;
+  text-align:center;
+  font-size:12px;
+  color:#6f7a85;
+  opacity:0.9;
+  text-decoration:none;
+}
+
+.login-clean form .forgot:hover, .login-clean form .forgot:active {
+  opacity:1;
+  text-decoration:none;
+}
+
+.form-control {
+  background:#f7f9fc;
+  border:none;
+  border-bottom:1px solid #dfe7f1;
+  border-radius:0;
+  box-shadow:none;
+  outline:none;
+  color:inherit;
+  text-indent:8px;
+  height:42px;
+  /*width:350px;*/
+}
+
+.small-input {
+  width:350px;
+  margin-bottom:10px;
+}
+
+a:hover, a:focus {
+  text-decoration:underline;
+}
+
+a:active, a:hover {
+  outline:0;
+  color:#8a1702;
+}
+
+a {
+  color:#8a1702;
+  text-decoration:none;
+}
+
+a {
+  text-decoration:none;
+}
+
+.solfilm-logo {
+  /*padding-right:80px;*/
+  margin-right:40px;
+  margin-bottom:13px;
+}
+
+.calendar td {
+  font-size:10px;
+  text-align:center;
+}
+
+.calendar thead th {
+  text-align:center;
+}
+
+
+/*------------------schedualing css-------------------*/
+.day-list{
+	border: #d7d7d7 solid 1px;
+	padding: 0px 10px;
+	border-bottom: 0px;
+}
+.day-list:hover{
+	background:whitesmoke;
+}
+
+.bg-success:hover, .bg-warning:hover, .bg-danger:hover{
+	border: #FFF solid 2px;
+}
+.day-list:last-child{
+	border-bottom: #d7d7d7 solid 1px;
+}
+.day-list .col-md-2{
+	display:flex;
+	align-items: center;
+	font-weight: bold;
+	flex: 0 0 10.666667%;
+    max-width: 10.666667%;
+}
+.day-list .col-md-1{
+	padding: 10px;
+	font-weight: bold;
+	flex: 0 0 10.666667%;
+    max-width: 10.666667%;
+	border-left: #d7d7d7 solid 1px;
+}
+.day-list .col-md-9{
+	border-left: #d7d7d7 solid 1px;
+	padding: 10px;
+	flex: 0 0 78.333333%;
+    max-width: 78.333333%;
+}
+.timeline {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.no-bg{
+	background:none;
+}
+.li {
+  transition: all 200ms ease-in;
+}
+
+.timestamp {
+  margin-bottom: 20px;
+  padding: 0px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 100;
+	font-size: 12px;
+}
+
+.status {
+  padding: 0px 17.5px;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #D6DCE0;
+  position: relative;
+  transition: all 200ms ease-in;
+}
+.status h4 {
+  font-weight: 600;
+}
+.status:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: -10px;
+  left: 42%;
+  transition: all 200ms ease-in;
+}
+
+.li.complete .status {
+  border-top: 2px solid #66DC71;
+}
+.li.complete .status:before {
+  background-color: #66DC71;
+  border: none;
+  transition: all 200ms ease-in;
+}
+.li.complete .status h4 {
+  color: #66DC71;
+}
+
+@media (min-device-width: 320px) and (max-device-width: 700px) {
+  .timeline {
+    list-style-type: none;
+    display: block;
+  }
+
+  .li {
+    transition: all 200ms ease-in;
+    display: flex;
+    width: inherit;
+  }
+
+  .timestamp {
+    width: 100px;
+  }
+
+  .status:before {
+    left: -8%;
+    top: 30%;
+    transition: all 200ms ease-in;
+  }
+}
